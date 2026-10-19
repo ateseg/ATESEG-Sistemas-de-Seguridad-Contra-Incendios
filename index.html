@@ -130,7 +130,12 @@ nav a.l:hover{color:var(--red)}
 .pdf{height:560px;border:3px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--bg-card, #fff);margin-top:20px}
 .pdf iframe{width:100%;height:100%;border:0}
 
-/* Equipo */
+/* Equipo y Validación */
+.auth-box { background: var(--bg-card, #fff); border: 1px solid var(--line); border-radius: 8px; padding: 24px; max-width: 480px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+.auth-box input { width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 12px; background: var(--bg); color: inherit; font: inherit; }
+.auth-error { color: var(--red); font-size: 0.85rem; font-weight: 600; margin-top: 8px; display: none; }
+#workersContainer { display: none; }
+
 .search{width:100%;max-width:480px;padding:13px 16px;font:inherit;border:2px solid var(--line);border-radius:6px;margin-bottom:24px;background:var(--bg);color:inherit}
 .wk{background:var(--bg-card, #fff);border:1px solid var(--line);border-radius:8px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 4px 12px rgba(0,0,0,0.03)}
 .wh{display:flex;gap:14px;align-items:center;margin-bottom:10px}
@@ -239,15 +244,12 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
 
 <nav><div class="wrap">
   <div class="menu-links">
-    <a class="l" href="#equipo" data-es="Trabajadores" data-en="Team">Trabajadores</a>
-    <a class="l" href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
-    <a class="l" href="#ubicacion" data-es="Dónde ubicarnos" data-en="Location">Dónde ubicarnos</a>
-    <a class="l" href="#catalogo" data-es="Recargas y Suministros" data-en="Recharges & Supplies">Recargas y Suministros</a>
+    
     <a class="l" href="#calculadora" data-es="Recarga" data-en="Calculator">Recarga</a>
     <a class="l" href="#fuego" data-es="Tipos de fuego" data-en="Fire Types">Tipos de fuego</a>
-    <a class="l" href="#galeria" data-es="Galería" data-en="Gallery">Galería</a>
     <a class="l" href="#faq" data-es="FAQ" data-en="FAQ">Preguntas Frecuentes</a>
     <a class="l" href="#blog" data-es="Consejos" data-en="Blog">Consejos</a>
+    <a class="l" href="#galeria" data-es="Galería" data-en="Gallery">Galería</a>
   </div>
   <div class="tools-nav">
     <button class="theme-btn" onclick="toggleTheme()" title="Cambiar Modo Oscuro/Claro">🌙</button>
@@ -289,12 +291,24 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
 </div></div>
 <div class="hz"></div>
 
-<!-- 1) NUESTRO EQUIPO (LISTA DE TRABAJADORES) -->
+<!-- 1) LISTA DE TRABAJADORES (PROTEGIDA POR CÓDIGO DE VALIDACIÓN) -->
 <section id="equipo"><div class="wrap">
   <h2 data-es="Lista de Trabajadores" data-en="Our Team">Lista de Trabajadores</h2>
-  <p class="lead" data-es="Personal identificado y con actividad vigente. Busca por nombre, cargo o área." data-en="Identified staff with active status. Search by name, position or area.">Personal identificado y con actividad vigente. Busca por nombre, cargo o área.</p>
-  <input class="search" id="searchInput" type="search" placeholder="Buscar por nombre, cargo o área" aria-label="Buscar trabajador">
-  <div class="grid" id="workersList"></div>
+  <p class="lead" data-es="Personal identificado y con actividad vigente. Ingrese el código de validación de la credencial para visualizar." data-en="Identified staff. Enter validation code to view.">Personal identificado y con actividad vigente. Ingrese el código de validación de la credencial para visualizar.</p>
+  
+  <!-- Cuadro de Autenticación por Código -->
+  <div class="auth-box" id="authBox">
+    <label for="validationCode"><b>INGRESAR CÓDIGO DE VALIDACIÓN</b></label>
+    <input type="password" id="validationCode" placeholder="Introduce la clave del QR">
+    <button class="btn btn-r" style="width:100%" onclick="verificarCodigo()">Desbloquear Información</button>
+    <div class="auth-error" id="authError">Código incorrecto. Intente nuevamente.</div>
+  </div>
+
+  <!-- Contenedor Oculto hasta Validar -->
+  <div id="workersContainer">
+    <input class="search" id="searchInput" type="search" placeholder="Buscar por nombre, cargo o área" aria-label="Buscar trabajador">
+    <div class="grid" id="workersList"></div>
+  </div>
 </div></section>
 
 <!-- 2) SERVICIOS -->
@@ -542,6 +556,24 @@ function acceptCookies(){
   document.getElementById('cookie-banner').style.display = 'none';
 }
 
+// Código de validación para credenciales QR
+const CLAVE_VALIDACION_SECRETA = "ATESEG2026"; 
+
+function verificarCodigo(){
+  const inputVal = document.getElementById('validationCode').value;
+  const errorDiv = document.getElementById('authError');
+  const authBox = document.getElementById('authBox');
+  const workersContainer = document.getElementById('workersContainer');
+
+  if(inputVal === CLAVE_VALIDACION_SECRETA){
+    authBox.style.display = 'none';
+    workersContainer.style.display = 'block';
+    renderWorkers(trabajadores);
+  } else {
+    errorDiv.style.display = 'block';
+  }
+}
+
 // Función de sanitización para prevenir XSS en el DOM
 function escaparHTML(str) {
   return str.replace(/[&<>'"]/g, 
@@ -549,7 +581,7 @@ function escaparHTML(str) {
   );
 }
 
-// Render Workers con protección contra XSS e integración segura de datos
+// Render Workers con protección contra XSS
 function renderWorkers(a){
   const g=document.getElementById('workersList');g.innerHTML='';
   a.forEach(w=>{
@@ -564,9 +596,8 @@ function renderWorkers(a){
     g.appendChild(d);
   });
 }
-renderWorkers(trabajadores);
 
-// Filtrado de búsqueda seguro ante inyecciones de código
+// Filtrado de búsqueda seguro ante inyecciones
 document.getElementById('searchInput').addEventListener('input',e=>{
   const q = escaparHTML(e.target.value.toLowerCase());
   renderWorkers(trabajadores.filter(w=>w.nombre.toLowerCase().includes(q)||w.cargo.toLowerCase().includes(q)||w.area.toLowerCase().includes(q)));
