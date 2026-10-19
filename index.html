@@ -81,10 +81,8 @@ nav a.l:hover{color:var(--red)}
 .theme-btn:hover, .lang-btn:hover{background:var(--red);color:#fff}
 @media(max-width:850px){nav .menu-links{display:none}}
 
-/* Hero Grid */
-.hero-grid {display:grid;grid-template-columns:180px 1fr 280px;gap:25px;align-items:center;}
-.hero-flags {display:flex;flex-direction:column;gap:15px;}
-.hero-flags img {width:100%;height:auto;border-radius:10px;border:3px solid rgba(255,255,255,0.9);box-shadow:0 8px 20px rgba(0,0,0,0.4);object-fit:cover;}
+/* Hero Grid (Ajustado sin banderas) */
+.hero-grid {display:grid;grid-template-columns:1fr 280px;gap:25px;align-items:center;max-width:950px;margin:0 auto;}
 .hero-center {display:flex;flex-direction:column;gap:15px;}
 .hero-white-box {background:#ffffff;color:#1a1412;padding:35px 25px;border-radius:16px;text-align:center;box-shadow:0 12px 35px rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.25);}
 .hero-white-box img {max-width:320px;width:100%;height:auto;margin-bottom:18px;object-fit:contain}
@@ -98,8 +96,6 @@ nav a.l:hover{color:var(--red)}
 
 @media(max-width:980px){
     .hero-grid{grid-template-columns:1fr;text-align:center;}
-    .hero-flags{flex-direction:row;justify-content:center;}
-    .hero-flags img{width:120px;}
     .hero-desc {text-align: center;}
     .hero-cta {justify-content: center;}
     .hero-extinguisher {max-width: 280px; margin: 0 auto;}
@@ -130,12 +126,7 @@ nav a.l:hover{color:var(--red)}
 .pdf{height:560px;border:3px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--bg-card, #fff);margin-top:20px}
 .pdf iframe{width:100%;height:100%;border:0}
 
-/* Equipo y Validación */
-.auth-box { background: var(--bg-card, #fff); border: 1px solid var(--line); border-radius: 8px; padding: 24px; max-width: 480px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-.auth-box input { width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 12px; background: var(--bg); color: inherit; font: inherit; }
-.auth-error { color: var(--red); font-size: 0.85rem; font-weight: 600; margin-top: 8px; display: none; }
-#workersContainer { display: none; }
-
+/* Equipo y Acceso por Clave */
 .search{width:100%;max-width:480px;padding:13px 16px;font:inherit;border:2px solid var(--line);border-radius:6px;margin-bottom:24px;background:var(--bg);color:inherit}
 .wk{background:var(--bg-card, #fff);border:1px solid var(--line);border-radius:8px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 4px 12px rgba(0,0,0,0.03)}
 .wh{display:flex;gap:14px;align-items:center;margin-bottom:10px}
@@ -149,6 +140,10 @@ nav a.l:hover{color:var(--red)}
 .wk a{display:block;text-align:center;padding:9px;border-radius:5px;font-size:.85rem;font-weight:600;text-decoration:none;color:#fff;background:var(--ink)}
 .wk a.rc{background:var(--grn);margin-top:-2px}
 .wk a:hover{background:var(--red)}
+
+.auth-box {background: var(--bg-card, #fff); border: 1px solid var(--line); border-radius: 8px; padding: 30px; max-width: 450px; margin: 0 auto; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03);}
+.auth-box input {width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 15px; background: var(--bg); color: inherit; font: inherit; text-align: center;}
+.auth-error {color: var(--red); font-size: 0.9rem; margin-top: 10px; font-weight: 600;}
 
 /* Calculadora de Recarga */
 .calc-box {background:var(--bg-card, #fff);border:1px solid var(--line);border-radius:8px;padding:30px;max-width:600px;margin:0 auto;box-shadow:0 6px 20px rgba(0,0,0,0.05)}
@@ -170,18 +165,6 @@ nav a.l:hover{color:var(--red)}
 .tag{display:inline-block;padding:4px 10px;border-radius:4px;font-size:.85rem;font-weight:600;background:#e6f4ec;color:var(--grn);margin-right:10px}
 .tag.sp{background:#fff3cf;color:#7a5b00}
 @media(max-width:640px){.panel{grid-template-columns:1fr;gap:6px}.panel .big{font-size:4.5rem}}
-.pass{margin-top:30px;background:var(--ink);color:#fff;border-radius:8px;padding:24px}
-.pass h3{font-size:1.6rem;margin-bottom:14px;color:var(--yel)}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-.steps div{border-left:4px solid var(--red);padding-left:12px;font-size:.92rem}
-.steps b{font-family:'Barlow Condensed';font-size:2.2rem;color:var(--red);display:block;line-height:1}
-
-/* Galería de Trabajos */
-.gallery-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.gallery-item {background:var(--bg-card, #fff);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.03)}
-.gallery-item img {width:100%;height:220px;object-fit:cover}
-.gallery-info {padding:16px}
-.gallery-info h3{font-size:1.25rem;font-weight:700;margin-bottom:6px}
 
 /* FAQ Accordion */
 .faq-list {max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
@@ -244,12 +227,14 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
 
 <nav><div class="wrap">
   <div class="menu-links">
-    
+    <a class="l" href="#equipo" data-es="Trabajadores" data-en="Team">Trabajadores</a>
+    <a class="l" href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
+    <a class="l" href="#ubicacion" data-es="Dónde ubicarnos" data-en="Location">Dónde ubicarnos</a>
+    <a class="l" href="#catalogo" data-es="Recargas y Suministros" data-en="Recharges & Supplies">Recargas y Suministros</a>
     <a class="l" href="#calculadora" data-es="Recarga" data-en="Calculator">Recarga</a>
     <a class="l" href="#fuego" data-es="Tipos de fuego" data-en="Fire Types">Tipos de fuego</a>
     <a class="l" href="#faq" data-es="FAQ" data-en="FAQ">Preguntas Frecuentes</a>
     <a class="l" href="#blog" data-es="Consejos" data-en="Blog">Consejos</a>
-    <a class="l" href="#galeria" data-es="Galería" data-en="Gallery">Galería</a>
   </div>
   <div class="tools-nav">
     <button class="theme-btn" onclick="toggleTheme()" title="Cambiar Modo Oscuro/Claro">🌙</button>
@@ -258,13 +243,9 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
   </div>
 </div></nav>
 
-<!-- PORTADA / HERO HD -->
+<!-- PORTADA / HERO HD (Sin Banderas) -->
 <header class="hero">
   <div class="wrap hero-grid">
-    <div class="hero-flags">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bandera_Provincia_Santo_Domingo_de_los_Ts%C3%A1chilas.svg/320px-Bandera_Provincia_Santo_Domingo_de_los_Ts%C3%A1chilas.svg.png" alt="Bandera Santo Domingo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Flag_of_Ecuador.svg/320px-Flag_of_Ecuador.svg.png" alt="Bandera Ecuador">
-    </div>
     <div class="hero-center">
       <div class="hero-white-box">
         <img src="logo-ateseg.jpg" alt="ATESEG Logo" onerror="this.src='https://via.placeholder.com/320x100?text=ATESEG'">
@@ -291,21 +272,19 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
 </div></div>
 <div class="hz"></div>
 
-<!-- 1) LISTA DE TRABAJADORES (PROTEGIDA POR CÓDIGO DE VALIDACIÓN) -->
+<!-- 1) NUESTRO EQUIPO CON ACCESO POR CLAVE -->
 <section id="equipo"><div class="wrap">
   <h2 data-es="Lista de Trabajadores" data-en="Our Team">Lista de Trabajadores</h2>
-  <p class="lead" data-es="Personal identificado y con actividad vigente. Ingrese el código de validación de la credencial para visualizar." data-en="Identified staff. Enter validation code to view.">Personal identificado y con actividad vigente. Ingrese el código de validación de la credencial para visualizar.</p>
+  <p class="lead" data-es="Ingrese la clave de seguridad para visualizar el personal activo." data-en="Enter the security password to view active staff.">Ingrese la clave de seguridad para visualizar el personal activo.</p>
   
-  <!-- Cuadro de Autenticación por Código -->
-  <div class="auth-box" id="authBox">
-    <label for="validationCode"><b>INGRESAR CÓDIGO DE VALIDACIÓN</b></label>
-    <input type="password" id="validationCode" placeholder="Introduce la clave del QR">
-    <button class="btn btn-r" style="width:100%" onclick="verificarCodigo()">Desbloquear Información</button>
-    <div class="auth-error" id="authError">Código incorrecto. Intente nuevamente.</div>
+  <div id="authContainer" class="auth-box">
+    <label for="passwordInput" style="font-weight:600;margin-bottom:10px;display:block">Clave de Acceso:</label>
+    <input type="password" id="passwordInput" placeholder="Ingrese la clave" autocomplete="current-password">
+    <button class="btn btn-r" style="width:100%" onclick="verificarClave()">Ingresar</button>
+    <div id="authError" class="auth-error" style="display:none;">Clave incorrecta. Intente nuevamente.</div>
   </div>
 
-  <!-- Contenedor Oculto hasta Validar -->
-  <div id="workersContainer">
+  <div id="workersSection" style="display:none;">
     <input class="search" id="searchInput" type="search" placeholder="Buscar por nombre, cargo o área" aria-label="Buscar trabajador">
     <div class="grid" id="workersList"></div>
   </div>
@@ -389,39 +368,10 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
   <p class="lead" data-es="Usar el extintor equivocado puede empeorar un incendio. Toca una clase y revisa qué hacer." data-en="Using the wrong extinguisher can worsen a fire. Touch a class and review what to do.">Usar el extintor equivocado puede empeorar un incendio. Toca una clase y revisa qué hacer.</p>
   <div class="tabs" id="tabs" role="group" aria-label="Clases de fuego"></div>
   <div class="panel" id="panel" aria-live="polite"></div>
-  <div class="pass">
-    <h3 data-es="Cómo usar un extintor: PASS" data-en="How to use an extinguisher: PASS">Cómo usar un extintor: PASS</h3>
-    <div class="steps">
-      <div><b>P</b><span data-es="Jala el seguro" data-en="Pull the pin">Jala el seguro</span></div>
-      <div><b>A</b><span data-es="Apunta a la base del fuego" data-en="Aim at the base">Apunta a la base del fuego</span></div>
-      <div><b>S</b><span data-es="Aprieta la palanca" data-en="Squeeze the handle">Aprieta la palanca</span></div>
-      <div><b>S</b><span data-es="Barre de lado a lado" data-en="Sweep side to side">Barre de lado a lado</span></div>
-    </div>
-  </div>
-</div></section>
-
-<!-- GALERIA DE TRABAJOS -->
-<section id="galeria"><div class="wrap">
-  <h2 data-es="Galería de Trabajos" data-en="Work Gallery">Galería de Trabajos</h2>
-  <p class="lead" data-es="Evidencia fotográfica de instalaciones, recargas profesionales y capacitaciones brindadas en Santo Domingo." data-en="Photographic evidence of installations, professional recharges, and training provided in Santo Domingo.">Evidencia fotográfica de instalaciones, recargas profesionales y capacitaciones brindadas en Santo Domingo.</p>
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="extintor-pqs.jpg" alt="Instalación de Redes" onerror="this.src='https://via.placeholder.com/400x250?text=Instalación'">
-      <div class="gallery-info"><h3 data-es="Instalación de Sistemas Hídricos" data-en="Water System Installation">Instalación de Sistemas Hídricos</h3><p data-es="Montaje de redes contra incendios para naves industriales." data-en="Assembly of fire networks for industrial warehouses.">Montaje de redes contra incendios para naves industriales.</p></div>
-    </div>
-    <div class="gallery-item">
-      <img src="extintor-co2.jpg" alt="Recarga de Extintores" onerror="this.src='https://via.placeholder.com/400x250?text=Recarga'">
-      <div class="gallery-info"><h3 data-es="Banco de Recarga Profesional" data-en="Professional Recharge Bench">Banco de Recarga Profesional</h3><p data-es="Mantenimiento preventivo y pruebas hidrostáticas." data-en="Preventive maintenance and hydrostatic testing.">Mantenimiento preventivo y pruebas hidrostáticas.</p></div>
-    </div>
-    <div class="gallery-item">
-      <img src="logo-ateseg.jpg" alt="Capacitaciones" onerror="this.src='https://via.placeholder.com/400x250?text=Capacitación'">
-      <div class="gallery-info"><h3 data-es="Capacitación Práctica PASS" data-en="PASS Practical Training">Capacitación Práctica PASS</h3><p data-es="Simulacros de uso de extintores con fuego controlado." data-en="Extinguisher use drills with controlled fire.">Simulacros de uso de extintores con fuego controlado.</p></div>
-    </div>
-  </div>
 </div></section>
 
 <!-- PREGUNTAS FRECUENTES -->
-<section id="faq" class="alt"><div class="wrap">
+<section id="faq"><div class="wrap">
   <h2 data-es="Preguntas Frecuentes (FAQ)" data-en="Frequently Asked Questions">Preguntas Frecuentes (FAQ)</h2>
   <p class="lead" data-es="Resolvemos tus dudas sobre normativas, vencimientos y cantidad de equipos necesarios." data-en="We answer your questions about regulations, expirations, and equipment needed.">Resolvemos tus dudas sobre normativas, vencimientos y cantidad de equipos necesarios.</p>
   
@@ -442,7 +392,7 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
 </div></section>
 
 <!-- CONSEJOS Y SEGURIDAD -->
-<section id="blog"><div class="wrap">
+<section id="blog" class="alt"><div class="wrap">
   <h2 data-es="Consejos y Seguridad" data-en="Safety Tips & Blog">Consejos y Seguridad</h2>
   <p class="lead" data-es="Artículos informativos optimizados para mantener seguro tu hogar o empresa en Santo Domingo." data-en="Informative articles optimized to keep your home or business safe in Santo Domingo.">Artículos informativos optimizados para mantener seguro tu hogar o empresa en Santo Domingo.</p>
   
@@ -501,6 +451,19 @@ function initTabs(){
 }
 initTabs();
 
+// Validación de Clave para ver Trabajadores
+function verificarClave() {
+  const input = document.getElementById('passwordInput').value;
+  const error = document.getElementById('authError');
+  if(input === 'Ateseg777') {
+    document.getElementById('authContainer').style.display = 'none';
+    document.getElementById('workersSection').style.display = 'block';
+    renderWorkers(trabajadores);
+  } else {
+    error.style.display = 'block';
+  }
+}
+
 // Calculadora de recarga con descargo legal
 function calcularVencimiento(){
   const val = document.getElementById('fechaRecarga').value;
@@ -556,24 +519,6 @@ function acceptCookies(){
   document.getElementById('cookie-banner').style.display = 'none';
 }
 
-// Código de validación para credenciales QR
-const CLAVE_VALIDACION_SECRETA = "ATESEG2026"; 
-
-function verificarCodigo(){
-  const inputVal = document.getElementById('validationCode').value;
-  const errorDiv = document.getElementById('authError');
-  const authBox = document.getElementById('authBox');
-  const workersContainer = document.getElementById('workersContainer');
-
-  if(inputVal === CLAVE_VALIDACION_SECRETA){
-    authBox.style.display = 'none';
-    workersContainer.style.display = 'block';
-    renderWorkers(trabajadores);
-  } else {
-    errorDiv.style.display = 'block';
-  }
-}
-
 // Función de sanitización para prevenir XSS en el DOM
 function escaparHTML(str) {
   return str.replace(/[&<>'"]/g, 
@@ -581,7 +526,7 @@ function escaparHTML(str) {
   );
 }
 
-// Render Workers con protección contra XSS
+// Render Workers con protección contra XSS e integración segura de datos
 function renderWorkers(a){
   const g=document.getElementById('workersList');g.innerHTML='';
   a.forEach(w=>{
@@ -597,8 +542,8 @@ function renderWorkers(a){
   });
 }
 
-// Filtrado de búsqueda seguro ante inyecciones
-document.getElementById('searchInput').addEventListener('input',e=>{
+// Filtrado de búsqueda seguro ante inyecciones de código
+document.getElementById('searchInput')?.addEventListener('input',e=>{
   const q = escaparHTML(e.target.value.toLowerCase());
   renderWorkers(trabajadores.filter(w=>w.nombre.toLowerCase().includes(q)||w.cargo.toLowerCase().includes(q)||w.area.toLowerCase().includes(q)));
 });
