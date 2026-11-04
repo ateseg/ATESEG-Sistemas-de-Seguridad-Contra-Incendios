@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tienda Oficial | ATESEG - Protección contra incendios</title>
+<meta name="description" content="Catálogo de productos, extintores y equipos de seguridad industrial en Santo Domingo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--red:#d22a12;--red-d:#a81d0a;--ink:#1a1412;--yel:#f5b800;--bg:#fafaf8;--bg2:#efedea;--grn:#1b8a4b;--line:#d9d5d0;--hz:repeating-linear-gradient(-45deg,#1a1412 0 14px,#f5b800 14px 28px)}
+[data-theme="dark"]{--bg:#12100e;--bg2:#1c1917;--ink:#f5f5f4;--line:#292524;--bg-card:#1c1917}
+[data-theme="light"]{--bg-card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:'Barlow',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;transition:background .3s,color .3s}
+h1,h2,h3,.cond{font-family:'Barlow Condensed','Arial Narrow',sans-serif;line-height:1.05}
+a{color:inherit}
+svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+:focus-visible{outline:3px solid var(--yel);outline-offset:2px}
+.wrap{max-width:1150px;margin:0 auto;padding:0 20px}
+.top{background:var(--ink);color:#fff;font-size:.85rem;text-align:center;padding:6px 10px}
+.top b{color:var(--yel)}
+nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-brand{font-family:'Barlow Condensed';font-size:1.4rem;font-weight:800;text-decoration:none;color:var(--red)}
+.tools-nav{display:flex;gap:10px;align-items:center}
+.theme-btn, .cart-btn{background:var(--bg2);border:1px solid var(--line);padding:8px 12px;border-radius:6px;cursor:pointer;font-weight:600;font-size:0.9rem;color:inherit;display:inline-flex;align-items:center;gap:6px}
+.theme-btn:hover, .cart-btn:hover{background:var(--red);color:#fff}
+.cart-badge{background:var(--red);color:#fff;border-radius:50%;padding:2px 6px;font-size:0.75rem}
+.shop-header{padding:40px 0 20px;text-align:center}
+.shop-header h1{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:800;text-transform:uppercase;margin-bottom:10px}
+.filters-bar{display:flex;gap:15px;margin-bottom:30px;flex-wrap:wrap;justify-content:center;align-items:center}
+.search-input{width:100%;max-width:400px;padding:12px 16px;font:inherit;border:2px solid var(--line);border-radius:8px;background:var(--bg);color:inherit}
+.cat-select{padding:12px 16px;font:inherit;border:2px solid var(--line);border-radius:8px;background:var(--bg);color:inherit;cursor:pointer}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;padding-bottom:60px}
+.product-card{background:var(--bg-card);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:12px;box-shadow:0 4px 12px rgba(0,0,0,0.02)}
+.product-card img{width:100%;height:180px;object-fit:contain;background:var(--bg2);border-radius:6px;padding:10px}
+.product-info h3{font-size:1.2rem;font-weight:700;margin-bottom:6px}
+.product-cat{font-size:0.8rem;text-transform:uppercase;color:var(--red);font-weight:700}
+.product-desc{font-size:0.9rem;opacity:0.85;margin:6px 0}
+.product-price{font-size:1.25rem;font-weight:800;color:var(--grn)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:8px;font-weight:600;text-decoration:none;border:2px solid transparent;font-size:0.95rem;cursor:pointer;transition:all .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+.btn-r{background:var(--red);color:#fff}
+.btn-g{background:var(--grn);color:#fff}
+.btn-outline{background:transparent;border-color:var(--line);color:inherit}
+.btn-outline:hover{background:var(--bg2);color:inherit;transform:none}
+.cart-modal{position:fixed;top:0;right:-100%;width:100%;max-width:420px;height:100%;background:var(--bg);border-left:1px solid var(--line);z-index:100;box-shadow:-5px 0 25px rgba(0,0,0,0.2);transition:right .3s ease;display:flex;flex-direction:column}
+.cart-modal.open{right:0}
+.cart-header{padding:20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.cart-body{padding:20px;overflow-y:auto;flex-grow:1}
+.cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:15px;border-bottom:1px solid var(--line);gap:10px}
+.cart-item-details h4{font-size:0.95rem;font-weight:600}
+.cart-item-details p{font-size:0.85rem;color:var(--grn);font-weight:700}
+.qty-controls{display:flex;align-items:center;gap:8px;margin-top:4px}
+.qty-btn{background:var(--bg2);border:1px solid var(--line);width:26px;height:26px;border-radius:4px;cursor:pointer;font-weight:bold}
+.cart-footer{padding:20px;border-top:1px solid var(--line);background:var(--bg2)}
+.bank-info{background:var(--bg);padding:12px;border-radius:8px;border:1px solid var(--line);font-size:0.85rem;margin-bottom:15px}
+.checkout-form input{width:100%;padding:10px;border:1px solid var(--line);border-radius:6px;margin-bottom:10px;background:var(--bg);color:inherit;font:inherit}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:90;display:none}
+.overlay.open{display:block}
+</style>
+</head>
+<body data-theme="light">
+
+<div class="top">Haz tus pedidos rápido y seguro. Envíos y entregas en <b>Santo Domingo</b>.</div>
+
+<nav><div class="wrap">
+  <a class="nav-brand" href="index.html">← Volver al Portal ATESEG</a>
+  <div class="tools-nav">
+    <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+    <button class="cart-btn" onclick="toggleCart()">🛒 Carrito <span id="cartCount" class="cart-badge">0</span></button>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <header class="shop-header">
+    <h1>Catálogo de Productos</h1>
+    <p>Encuentra extintores, accesorios y sistemas de seguridad industrial.</p>
+  </header>
+
+  <div class="filters-bar">
+    <input type="search" id="searchProd" class="search-input" placeholder="Buscar por nombre o código..." oninput="filtrarProductos()">
+    <select id="catSelect" class="cat-select" onchange="filtrarProductos()">
+      <option value="">Todas las categorías</option>
+    </select>
+  </div>
+
+  <div id="productsGrid" class="products-grid"></div>
+</div>
+
+<div id="cartOverlay" class="overlay" onclick="toggleCart()"></div>
+<div id="cartModal" class="cart-modal">
+  <div class="cart-header">
+    <h3>Tu Carrito de Compras</h3>
+    <button class="btn btn-outline" style="padding:4px 8px;" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartItemsList">
+    <p style="text-align:center;opacity:0.6;margin-top:20px;">Tu carrito está vacío</p>
+  </div>
+  <div class="cart-footer">
+    <div style="font-size:1.1rem;font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;">
+      <span>Total:</span>
+      <span id="cartTotalPrice">$0.00</span>
+    </div>
+    
+    <div class="bank-info">
+      <strong>Datos Bancarios (Banco Pichincha):</strong><br>
+      Cuenta Corriente: 3123456789<br>
+      RUC: 1791234567001<br>
+      <button class="btn btn-outline" style="width:100%;margin-top:6px;font-size:0.8rem;" onclick="copiarDatosBanco()">Copiar datos de cuenta</button>
+    </div>
+
+    <div class="checkout-form">
+      <input type="text" id="clientName" placeholder="Tu Nombre y Apellido">
+      <input type="tel" id="clientPhone" placeholder="Teléfono de contacto">
+      <input type="text" id="clientAddress" placeholder="Dirección de entrega">
+    </div>
+
+    <button class="btn btn-g" style="width:100%;margin-top:5px;" onclick="enviarPedidoWhatsApp()">Enviar pedido por WhatsApp 📲</button>
+  </div>
+</div>
+
+<script src="productos.js"></script>
+
+<script>
+let carrito = JSON.parse(localStorage.getItem('ateseg_cart')) || [];
+
+function toggleTheme(){
+  const body = document.body;
+  body.setAttribute('data-theme', body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+}
+
+function toggleCart(){
+  document.getElementById('cartModal').classList.toggle('open');
+  document.getElementById('cartOverlay').classList.toggle('open');
+}
+
+function inicializarTienda(){
+  if(typeof productos === 'undefined') {
+    document.getElementById('productsGrid').innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:40px;">Cargando productos o archivo productos.js no encontrado.</p>';
+    return;
+  }
+  
+  const categorias = [...new Set(productos.map(p => p.categoria))];
+  const select = document.getElementById('catSelect');
+  categorias.forEach(cat => {
+    const opt = document.createElement('option');
+    opt.value = cat;
+    opt.textContent = cat;
+    select.appendChild(opt);
+  });
+
+  renderProductos(productos);
+  actualizarCarritoUI();
+}
+
+function renderProductos(lista){
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = '';
+  
+  if(lista.length === 0){
+    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:40px;opacity:0.7;">No se encontraron productos.</p>';
+    return;
+  }
+
+  lista.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div>
+        <img src="fotos/${p.codigo}.jpg" alt="${p.nombre}" onerror="this.src='logo-ateseg.jpg'">
+        <div class="product-info">
+          <span class="product-cat">${p.categoria}</span>
+          <h3>${p.nombre}</h3>
+          <p class="product-desc">${p.descripcion}</p>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <span class="product-price">$${Number(p.precio).toFixed(2)}</span>
+          <span style="font-size:0.8rem;opacity:0.7;">Stock: ${p.stock}</span>
+        </div>
+        <button class="btn btn-r" style="width:100%;" onclick='agregarAlCarrito(${JSON.stringify(p)})'>Agregar al carrito</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filtrarProductos(){
+  const query = document.getElementById('searchProd').value.toLowerCase();
+  const cat = document.getElementById('catSelect').value;
+  
+  const filtrados = productos.filter(p => {
+    const coincideTexto = p.nombre.toLowerCase().includes(query) || p.codigo.toLowerCase().includes(query);
+    const coincideCat = cat === "" || p.categoria === cat;
+    return coincideTexto && coincideCat;
+  });
+  
+  renderProductos(filtrados);
+}
+
+function agregarAlCarrito(producto){
+  const itemExistente = carrito.find(item => item.codigo === producto.codigo);
+  if(itemExistente){
+    itemExistente.cantidad += 1;
+  } else {
+    carrito.push({ ...producto, cantidad: 1 });
+  }
+  guardarYActualizar();
+  toggleCart();
+}
+
+function cambiarCantidad(codigo, delta){
+  const item = carrito.find(i => i.codigo === codigo);
+  if(item){
+    item.cantidad += delta;
+    if(item.cantidad <= 0){
+      carrito = carrito.filter(i => i.codigo !== codigo);
+    }
+  }
+  guardarYActualizar();
+}
+
+function guardarYActualizar(){
+  localStorage.setItem('ateseg_cart', JSON.stringify(carrito));
+  actualizarCarritoUI();
+}
+
+function actualizarCarritoUI(){
+  const listaEl = document.getElementById('cartItemsList');
+  const countEl = document.getElementById('cartCount');
+  const totalEl = document.getElementById('cartTotalPrice');
+  
+  const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+  countEl.textContent = totalItems;
+  
+  if(carrito.length === 0){
+    listaEl.innerHTML = '<p style="text-align:center;opacity:0.6;margin-top:20px;">Tu carrito está vacío</p>';
+    totalEl.textContent = '$0.00';
+    return;
+  }
+  
+  listaEl.innerHTML = '';
+  let total = 0;
+  
+  carrito.forEach(item => {
+    total += item.precio * item.cantidad;
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <div class="cart-item-details">
+        <h4>${item.nombre}</h4>
+        <p>$${(item.precio * item.cantidad).toFixed(2)}</p>
+        <div class="qty-controls">
+          <button class="qty-btn" onclick="cambiarCantidad('${item.codigo}', -1)">-</button>
+          <span>${item.cantidad}</span>
+          <button class="qty-btn" onclick="cambiarCantidad('${item.codigo}', 1)">+</button>
+        </div>
+      </div>
+      <button class="btn btn-outline" style="padding:4px 8px;font-size:0.75rem;" onclick="cambiarCantidad('${item.codigo}', -${item.cantidad})">Eliminar</button>
+    `;
+    listaEl.appendChild(div);
+  });
+  
+  totalEl.textContent = `$${total.toFixed(2)}`;
+}
+
+function copiarDatosBanco(){
+  const texto = "Banco Pichincha - Cta Cte: 3123456789 - RUC: 1791234567001 - ATESEG";
+  navigator.clipboard.writeText(texto).then(() => {
+    alert("¡Datos bancarios copiados al portapapeles!");
+  });
+}
+
+function enviarPedidoWhatsApp(){
+  if(carrito.length === 0){
+    alert("Tu carrito está vacío.");
+    return;
+  }
+  const nombre = document.getElementById('clientName').value.trim();
+  const telefono = document.getElementById('clientPhone').value.trim();
+  const direccion = document.getElementById('clientAddress').value.trim();
+  
+  if(!nombre || !telefono || !direccion){
+    alert("Por favor completa tu nombre, teléfono y dirección de entrega.");
+    return;
+  }
+  
+  let mensaje = `*NUEVO PEDIDO - ATESEG*%0A`;
+  mensaje += `-----------------------------------%0A`;
+  mensaje += `*Cliente:* ${nombre}%0A`;
+  mensaje += `*Teléfono:* ${telefono}%0A`;
+  mensaje += `*Dirección:* ${direccion}%0A`;
+  mensaje += `-----------------------------------%0A*DETALLE:*%0A`;
+  
+  let total = 0;
+  carrito.forEach(item => {
+    const subtotal = item.precio * item.cantidad;
+    total += subtotal;
+    mensaje += `- ${item.cantidad}x ${item.nombre} ($${subtotal.toFixed(2)})%0A`;
+  });
+  
+  mensaje += `-----------------------------------%0A`;
+  mensaje += `*TOTAL A PAGAR:* $${total.toFixed(2)}%0A`;
+  mensaje += `*(Adjunto comprobante de transferencia)*`;
+  
+  const numeroWhatsApp = "593988257080";
+  const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+  
+  window.open(url, '_blank');
+}
+
+window.addEventListener('DOMContentLoaded', inicializarTienda);
+</script>
+</body>
+</html>
