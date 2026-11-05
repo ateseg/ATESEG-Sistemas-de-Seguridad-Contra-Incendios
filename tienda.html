@@ -46,6 +46,10 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:7
 .stock.ok{background:rgba(27,138,75,.15);color:var(--grn)}
 .stock.ask{background:rgba(245,184,0,.2)}
 .empty{text-align:center;padding:50px 10px;opacity:.75}
+.opt{display:block;font-size:.85rem;font-weight:600;margin-top:8px}
+.opt select{display:block;width:100%;margin-top:4px;padding:10px 12px;font:inherit;border:2px solid var(--line);border-radius:8px;background:var(--bg);color:inherit;cursor:pointer}
+.opt select.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(210,42,18,.2)}
+.cart-opt{display:inline-block;background:rgba(245,184,0,.25);border-radius:4px;padding:1px 8px;font-weight:700;font-size:.85rem;margin-top:2px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:8px;font:inherit;font-weight:600;text-decoration:none;border:2px solid transparent;font-size:.95rem;cursor:pointer;transition:transform .15s,box-shadow .15s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
 .btn-r{background:var(--red);color:#fff}
@@ -178,9 +182,15 @@ const catalogo = (typeof productos !== 'undefined' && Array.isArray(productos))
 const porCodigo = new Map(catalogo.map(p => [p.codigo, p]));
 
 // El carrito guarda solo código y cantidad; el resto se toma siempre del catálogo actual.
+function opcionValida(p, opcion){
+  if (!p.opciones || !p.opciones.length) return true;   // producto sin variantes
+  return p.opciones.includes(opcion);                   // con variantes: debe haber una elegida
+}
 let carrito = leerCarrito()
-  .filter(i => i && porCodigo.has(i.codigo) && Number(i.cantidad) > 0)
-  .map(i => ({ codigo: i.codigo, cantidad: Math.min(999, Math.floor(Number(i.cantidad))) }));
+  .filter(i => i && porCodigo.has(i.codigo) && Number(i.cantidad) > 0 && opcionValida(porCodigo.get(i.codigo), i.opcion))
+  .map(i => ({ codigo: i.codigo, opcion: i.opcion || '', cantidad: Math.min(999, Math.floor(Number(i.cantidad))) }));
+const mismo = (i, cod, opc) => i.codigo === cod && (i.opcion || '') === (opc || '');
+const titulo = i => porCodigo.get(i.codigo).nombre + (i.opcion ? ' – ' + i.opcion : '');
 
 /* ---------- tema ---------- */
 function aplicarTema(t){
@@ -211,6 +221,15 @@ function llenarCategorias(){
   return cats;
 }
 
+function selectorOpciones(p){
+  if (!p.opciones || !p.opciones.length) return '';
+  return `<label class="opt">${esc(p.opcionesTitulo || 'Elige una opción')} *
+    <select class="js-opt" aria-required="true">
+      <option value="" selected disabled>Elige una opción…</option>
+      ${p.opciones.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('')}
+    </select></label>`;
+}
+
 function tarjeta(p){
   const stock = Number(p.stock) || 0;
   let etiqueta = '';
@@ -227,6 +246,7 @@ function tarjeta(p){
         <h3>${esc(p.nombre)}</h3>
         ${p.descripcion ? `<p class="product-desc">${esc(p.descripcion)}</p>` : ''}
         ${etiqueta}
+        ${selectorOpciones(p)}
       </div>
     </div>
     <button class="btn btn-r js-add" type="button" data-codigo="${esc(p.codigo)}">Añadir a cotización</button>
@@ -289,39 +309,41 @@ function actualizarCarritoUI(){
   }
   lista.innerHTML = carrito.map(i => {
     const p = porCodigo.get(i.codigo);
+    const d = `data-codigo="${esc(i.codigo)}" data-opcion="${esc(i.opcion)}"`;
     return `<div class="cart-item">
       <div class="cart-item-details">
         <h4>${esc(p.nombre)}</h4>
+        ${i.opcion ? `<span class="cart-opt">${esc(i.opcion)}</span><br>` : ''}
         <small>${esc(p.codigo)}</small>
         <div class="qty-controls">
-          <button class="qty-btn" type="button" data-accion="menos" data-codigo="${esc(i.codigo)}" aria-label="Quitar una unidad de ${esc(p.nombre)}">−</button>
+          <button class="qty-btn" type="button" data-accion="menos" ${d} aria-label="Quitar una unidad de ${esc(titulo(i))}">−</button>
           <span aria-live="polite">${i.cantidad}</span>
-          <button class="qty-btn" type="button" data-accion="mas" data-codigo="${esc(i.codigo)}" aria-label="Agregar una unidad de ${esc(p.nombre)}">+</button>
+          <button class="qty-btn" type="button" data-accion="mas" ${d} aria-label="Agregar una unidad de ${esc(titulo(i))}">+</button>
         </div>
       </div>
-      <button class="btn btn-outline" type="button" style="padding:4px 8px;font-size:.75rem" data-accion="quitar" data-codigo="${esc(i.codigo)}" aria-label="Eliminar ${esc(p.nombre)}">Eliminar</button>
+      <button class="btn btn-outline" type="button" style="padding:4px 8px;font-size:.75rem" data-accion="quitar" ${d} aria-label="Eliminar ${esc(titulo(i))}">Eliminar</button>
     </div>`;
   }).join('');
 }
 
 function persistir(){ guardarCarrito(); actualizarCarritoUI(); }
 
-function cambiarCantidad(codigo, delta){
-  const item = carrito.find(i => i.codigo === codigo);
+function cambiarCantidad(codigo, opcion, delta){
+  const item = carrito.find(i => mismo(i, codigo, opcion));
   if (!item) return;
   item.cantidad = Math.min(999, item.cantidad + delta);
-  if (item.cantidad <= 0) carrito = carrito.filter(i => i.codigo !== codigo);
+  if (item.cantidad <= 0) carrito = carrito.filter(i => i !== item);
   persistir();
 }
 
-function agregar(codigo){
+function agregar(codigo, opcion){
   const p = porCodigo.get(codigo);
   if (!p) return;
-  const item = carrito.find(i => i.codigo === codigo);
+  const item = carrito.find(i => mismo(i, codigo, opcion));
   if (item) item.cantidad = Math.min(999, item.cantidad + 1);
-  else carrito.push({ codigo: codigo, cantidad: 1 });
+  else carrito.push({ codigo: codigo, opcion: opcion || '', cantidad: 1 });
   persistir();
-  aviso(p.nombre + ' añadido a tu lista');
+  aviso(titulo({ codigo: codigo, opcion: opcion }) + ' añadido a tu lista');
 }
 
 let toastTimer;
@@ -372,9 +394,9 @@ function enviarCotizacion(){
   if (direccion) lineas.push('*Ubicación:* ' + direccion);
   lineas.push('-----------------------------------', '*DETALLE DE PRODUCTOS:*');
   carrito.forEach(i => {
-    const p = porCodigo.get(i.codigo);
-    lineas.push('- ' + i.cantidad + 'x ' + p.nombre + ' (' + p.codigo + ')');
+    lineas.push('- ' + i.cantidad + 'x ' + titulo(i) + ' (' + i.codigo + ')');
   });
+  if (carrito.some(i => /^otra/i.test(i.opcion))) lineas.push('_Indicaré la capacidad de los equipos marcados como "Otra capacidad" en este chat._');
   lineas.push('*Total de unidades:* ' + totalUnidades());
 
   const url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lineas.join('\n'));
@@ -404,7 +426,18 @@ function iniciar(){
 
   $('contenedorSecciones').addEventListener('click', e => {
     const b = e.target.closest('.js-add');
-    if (b) agregar(b.dataset.codigo);
+    if (!b) return;
+    const sel = b.closest('.product-card').querySelector('.js-opt');
+    if (sel && !sel.value) {
+      sel.classList.add('error');
+      sel.focus();
+      aviso('Elige primero: ' + (porCodigo.get(b.dataset.codigo).opcionesTitulo || 'una opción'));
+      return;
+    }
+    agregar(b.dataset.codigo, sel ? sel.value : '');
+  });
+  $('contenedorSecciones').addEventListener('change', e => {
+    if (e.target.classList.contains('js-opt')) e.target.classList.remove('error');
   });
   // Si una foto no existe, se muestra el logo (una sola vez, sin bucles).
   $('contenedorSecciones').addEventListener('error', e => {
@@ -418,11 +451,11 @@ function iniciar(){
   $('cartItemsList').addEventListener('click', e => {
     const b = e.target.closest('[data-accion]');
     if (!b) return;
-    const cod = b.dataset.codigo;
-    if (b.dataset.accion === 'mas') cambiarCantidad(cod, 1);
-    else if (b.dataset.accion === 'menos') cambiarCantidad(cod, -1);
+    const cod = b.dataset.codigo, opc = b.dataset.opcion;
+    if (b.dataset.accion === 'mas') cambiarCantidad(cod, opc, 1);
+    else if (b.dataset.accion === 'menos') cambiarCantidad(cod, opc, -1);
     else if (b.dataset.accion === 'quitar') {
-      carrito = carrito.filter(i => i.codigo !== cod);
+      carrito = carrito.filter(i => !mismo(i, cod, opc));
       persistir();
     }
   });
