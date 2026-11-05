@@ -138,12 +138,15 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:7
 'use strict';
 
 const WHATSAPP = '593980677550';
+// Dónde están las fotos: '' = junto a tienda.html (raíz del repositorio). Si algún día las pasas a una carpeta, escribe 'fotos/'.
+const RUTA_FOTOS = '';
 const KEY_CARRITO = 'ateseg_cotizacion';
 const KEY_TEMA = 'ateseg_tema';
 //Orden y título de cada sección. Una categoría que no esté aquí también se muestra, al final.
 const SECCIONES = {
   'RECARGAS': '🔄 RECARGAS',
   'VENTAS': '🛒 VENTAS',
+  'EXTINTORES': '🧯 EXTINTORES',
   'SUMINISTROS': '🦺 SUMINISTROS',
   'REPUESTOS DE EXTINTOR': '🔧 REPUESTOS DE EXTINTOR',
   'DETECTORES Y ALARMAS': '🚨 DETECTORES Y ALARMAS',
@@ -239,7 +242,7 @@ function tarjeta(p){
   }
   return `<article class="product-card">
     <div>
-      <img src="fotos/${encodeURIComponent(p.codigo)}.jpg" alt="${esc(p.nombre)}" loading="lazy" width="250" height="180">
+      <img src="${RUTA_FOTOS}${encodeURIComponent(p.codigo)}.jpg" alt="${esc(p.nombre)}" loading="lazy" width="250" height="180">
       <div class="product-info">
         <span class="product-cat">${esc(p.categoria)}</span>
         <h3>${esc(p.nombre)}</h3>
