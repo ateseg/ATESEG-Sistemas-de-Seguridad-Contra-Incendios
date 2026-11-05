@@ -61,14 +61,14 @@ h2{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:10px}
 .btn-outline-w{background:#fff;color:var(--red);border-color:#fff;}
 .btn-outline-r{background:rgba(0,0,0,0.4);color:#fff;border-color:rgba(255,255,255,0.4);backdrop-filter:blur(4px)}
 
-/* Banners Laterales */
+
 .side-banner { position: fixed; top: 50%; transform: translateY(-50%); background: linear-gradient(90deg, #d22a12, #a81d0a); color: #ffffff; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; padding: 12px 20px; z-index: 100; text-decoration: none; display: none; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 1px solid #ff4d4d; letter-spacing: 0.5px; }
 .side-banner:hover { transform: translateY(-50%) scale(1.05); }
 .banner-left { left: 0; border-radius: 0 8px 8px 0; border-left: none; }
 .banner-right { right: 0; border-radius: 8px 0 0 8px; border-right: none; }
 @media (min-width: 1300px) { .side-banner { display: block; } }
 
-/* Barra y Nav */
+
 .top{background:var(--ink);color:#fff;font-size:.85rem;text-align:center;padding:6px 10px}
 .top b{color:var(--yel)}
 nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 2px 10px rgba(0,0,0,0.1)}
@@ -81,7 +81,7 @@ nav a.l:hover{color:var(--red)}
 .theme-btn:hover, .lang-btn:hover{background:var(--red);color:#fff}
 @media(max-width:850px){nav .menu-links{display:none}}
 
-/* Hero Grid */
+
 .hero-grid {display:grid;grid-template-columns:1fr 280px;gap:25px;align-items:center;max-width:950px;margin:0 auto;}
 .hero-center {display:flex;flex-direction:column;gap:15px;}
 .hero-white-box {background:#ffffff;color:#1a1412;padding:35px 25px;border-radius:16px;text-align:center;box-shadow:0 12px 35px rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.25);}
@@ -223,15 +223,15 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
   <button onclick="acceptCookies()">Aceptar y Cerrar</button>
 </div>
 
-<a href="https://wa.me/593988257080?text=Hola,%20deseo%20cotizar%20una%20capacitación" target="_blank" class="side-banner banner-left" data-es="🔥 CAPACITACIONES" data-en="🔥 TRAINING">🔥 CAPACITACIONES</a>
-<a href="https://wa.me/593988257080?text=Hola,%20deseo%20cotizar%20una%20capacitación" target="_blank" class="side-banner banner-right" data-es="🔥 CAPACITACIONES" data-en="🔥 TRAINING">🔥 CAPACITACIONES</a>
+<a href="https://wa.me/593988257080?text=Hola,%20deseo%20cotizar%20una%20capacitación" target="_blank" rel="noopener" class="side-banner banner-left" data-es="🔥 CAPACITACIONES" data-en="🔥 TRAINING">🔥 CAPACITACIONES</a>
+<a href="https://wa.me/593988257080?text=Hola,%20deseo%20cotizar%20una%20capacitación" target="_blank" rel="noopener" class="side-banner banner-right" data-es="🔥 CAPACITACIONES" data-en="🔥 TRAINING">🔥 CAPACITACIONES</a>
 
 <div class="top"><span data-es="Emergencia en curso: llama al" data-en="Emergency in progress: call">Emergencia en curso: llama al</span> <b>911</b>. <span data-es="Para asesoría y cotizaciones, escríbenos por WhatsApp." data-en="For advice and quotes, write us via WhatsApp.">Para asesoría y cotizaciones, escríbenos por WhatsApp.</span></div>
 
 <nav><div class="wrap">
   <div class="menu-links">
     <a class="l" href="#equipo" data-es="Trabajadores" data-en="Team">Trabajadores</a>
-    <a class="l" href="tienda.html" style="color:var(--red);font-weight:700;">🛒  COTIZACION DE PRODUCTOS </a>
+    <a class="l" href="tienda.html" style="color:var(--red);font-weight:700;" data-es="🛒 COTIZACIÓN DE PRODUCTOS" data-en="🛒 PRODUCT QUOTES">🛒 COTIZACIÓN DE PRODUCTOS</a>
     <a class="l" href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
     <a class="l" href="#ubicacion" data-es="Dónde ubicarnos" data-en="Location">Dónde ubicarnos</a>
     <a class="l" href="#catalogo" data-es="Recargas y Suministros" data-en="Recharges & Supplies">Recargas y Suministros</a>
@@ -251,18 +251,18 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
   <div class="wrap hero-grid">
     <div class="hero-center">
       <div class="hero-white-box">
-        <img src="logo-ateseg.jpg" alt="ATESEG Logo" onerror="this.src='https://via.placeholder.com/320x100?text=ATESEG'">
+        <img src="logo-ateseg.jpg" alt="ATESEG Logo" onerror="this.onerror=null;this.style.display='none'">
         <h1 data-es="SISTEMA DE SEGURIDAD CONTRA INCENDIOS" data-en="FIRE SAFETY SYSTEMS">SISTEMA DE SEGURIDAD CONTRA INCENDIOS</h1>
         <h3 data-es="TU SEGURIDAD ES NUESTRA PRIORIDAD" data-en="YOUR SAFETY IS OUR PRIORITY">TU SEGURIDAD ES NUESTRA PRIORIDAD</h3>
       </div>
       <p class="hero-desc" data-es="Venta y recarga de extintores, instalación de sistemas y capacitación para casas, negocios e industrias de Santo Domingo." data-en="Sale and recharge of extinguishers, system installations and training for homes, businesses and industries in Santo Domingo.">Venta y recarga de extintores, instalación de sistemas y capacitación para casas, negocios e industrias de Santo Domingo.</p>
       <div class="hero-cta">
         <a class="btn btn-outline-w" href="https://wa.me/593988257080?text=Hola,%20quisiera%20cotizar%20la%20instalación" target="_blank" rel="noopener"><svg class="i"><use href="#wr"/></svg><span data-es="Cotizar instalación" data-en="Quote Installation">Cotizar instalación</span></a>
-        <a class="btn btn-outline-r" href="brochure.pdf" target="_blank"><svg class="i"><use href="#dl"/></svg><span data-es="Descargar brochure" data-en="Download Brochure">Descargar brochure</span></a>
+        <a class="btn btn-outline-r" href="brochure.pdf" target="_blank" rel="noopener"><svg class="i"><use href="#dl"/></svg><span data-es="Descargar brochure" data-en="Download Brochure">Descargar brochure</span></a>
       </div>
     </div>
     <div class="hero-extinguisher">
-      <img src="extintor-pqs.jpg" alt="Extintor ATESEG" onerror="this.src='https://via.placeholder.com/200x350?text=Extintor'">
+      <img src="extintor-pqs.jpg" alt="Extintor ATESEG" onerror="this.onerror=null;this.src='logo-ateseg.jpg'">
       <div class="ext-caption" data-es="Equipos Certificados" data-en="Certified Equipment">Equipos Certificados</div>
     </div>
   </div>
@@ -330,9 +330,9 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
   <h2 data-es="Recargas y Suministros" data-en="Recharges & Supplies">Recargas y Suministros</h2>
   <p class="lead" data-es="Venta y recarga profesional. Cotiza por WhatsApp y retira en nuestra tienda física." data-en="Professional sales and recharging. Quote via WhatsApp and pick up in store.">Venta y recarga profesional. Cotiza por WhatsApp y retira en nuestra tienda física.</p>
   <div class="grid">
-    <article class="prod"><img src="extintor-pqs.jpg" alt="Extintor PQS" onerror="this.src='logo-ateseg.jpg'"><div><h3 data-es="Extintor PQS (polvo químico)" data-en="PQS Extinguisher">Extintor PQS (polvo químico)</h3><p data-es="Para fuegos A, B y C. El más versátil para negocios y hogar." data-en="For A, B and C fires. Most versatile for business and home.">Para fuegos A, B y C. El más versátil para negocios y hogar.</p><a class="btn btn-g" href="https://wa.me/593988257080?text=Hola,%20quisiera%20cotizar%20un%20Extintor%20PQS" target="_blank" rel="noopener"><svg class="i"><use href="#chat"/></svg><span data-es="Cotizar" data-en="Quote">Cotizar</span></a></div></article>
-    <article class="prod"><img src="extintor-co2.jpg" alt="Extintor CO2" onerror="this.src='logo-ateseg.jpg'"><div><h3 data-es="Extintor CO2" data-en="CO2 Extinguisher">Extintor CO2</h3><p data-es="Para fuegos B y C. No deja residuos: ideal para equipos electrónicos." data-en="For B and C fires. No residue: ideal for electronics.">Para fuegos B y C. No deja residuos: ideal para equipos electrónicos, servidores y laboratorios.</p><a class="btn btn-g" href="https://wa.me/593988257080?text=Hola,%20quisiera%20cotizar%20un%20Extintor%20CO2" target="_blank" rel="noopener"><svg class="i"><use href="#chat"/></svg><span data-es="Cotizar" data-en="Quote">Cotizar</span></a></div></article>
-    <article class="prod"><img src="extintor-foam.jpg" alt="Extintor Foam" onerror="this.src='logo-ateseg.jpg'"><div><h3 data-es="Extintor Foam (espuma)" data-en="Foam Extinguisher">Extintor Foam (espuma)</h3><p data-es="Para fuegos A y B. Sofoca y enfría, excelente para hidrocarburos." data-en="For A and B fires. Excellent for hydrocarbon spills.">Para fuegos A y B. Sofoca y enfría, excelente para derrames de hidrocarburos.</p><a class="btn btn-g" href="https://wa.me/593988257080?text=Hola,%20quisiera%20cotizar%20un%20Extintor%20Foam" target="_blank" rel="noopener"><svg class="i"><use href="#chat"/></svg><span data-es="Cotizar" data-en="Quote">Cotizar</span></a></div></article>
+    <article class="prod"><img src="extintor-pqs.jpg" alt="Extintor PQS" onerror="this.onerror=null;this.src='logo-ateseg.jpg'"><div><h3 data-es="Extintor PQS (polvo químico)" data-en="PQS Extinguisher">Extintor PQS (polvo químico)</h3><p data-es="Para fuegos A, B y C. El más versátil para negocios y hogar." data-en="For A, B and C fires. Most versatile for business and home.">Para fuegos A, B y C. El más versátil para negocios y hogar.</p><a class="btn btn-g" href="https://wa.me/593988257080?text=Hola,%20quisiera%20cotizar%20un%20Extintor%20PQS" target="_blank" rel="noopener"><svg class="i"><use href="#chat"/></svg><span data-es="Cotizar" data-en="Quote">Cotizar</span></a></div></article>
+    <article class="prod"><img src="extintor-co2.jpg" alt="Extintor CO2" onerror="this.onerror=null;this.src='logo-ateseg.jpg'"><div><h3 data-es="Extintor CO2" data-en="CO2 Extinguisher">Extintor CO2</h3><p data-es="Para fuegos B y C. No deja residuos: ideal para equipos electrónicos." data-en="For B and C fires. No residue: ideal for electronics.">Para fuegos B y C. No deja residuos: ideal para equipos electrónicos, servidores y laboratorios.</p><a class="btn btn-g" href="https://wa.me/593988257080?text=Hola,%20quisiera%20cotizar%20un%20Extintor%20CO2" target="_blank" rel="noopener"><svg class="i"><use href="#chat"/></svg><span data-es="Cotizar" data-en="Quote">Cotizar</span></a></div></article>
+    <article class="prod"><img src="extintor-foam.jpg" alt="Extintor Foam" onerror="this.onerror=null;this.src='logo-ateseg.jpg'"><div><h3 data-es="Extintor Foam (espuma)" data-en="Foam Extinguisher">Extintor Foam (espuma)</h3><p data-es="Para fuegos A y B. Sofoca y enfría, excelente para hidrocarburos." data-en="For A and B fires. Excellent for hydrocarbon spills.">Para fuegos A y B. Sofoca y enfría, excelente para derrames de hidrocarburos.</p><a class="btn btn-g" href="https://wa.me/593988257080?text=Hola,%20quisiera%20cotizar%20un%20Extintor%20Foam" target="_blank" rel="noopener"><svg class="i"><use href="#chat"/></svg><span data-es="Cotizar" data-en="Quote">Cotizar</span></a></div></article>
   </div>
   <div style="margin-top:36px"><h2 style="font-size:2rem" data-es="Portafolio de servicios" data-en="Service Portfolio">Portafolio de servicios</h2>
   <div class="pdf"><iframe src="brochure.pdf" title="Brochure ATESEG"></iframe></div></div>
@@ -419,6 +419,7 @@ const clases=[
 ];
 
 let currentLang = 'es';
+let trabajadoresActivos = [];
 
 const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
 function show(k){
@@ -457,7 +458,7 @@ function verificarClave() {
   
   if (!datosDesencriptados) throw new Error("Clave incorrecta");
   
-  const trabajadoresActivos = JSON.parse(datosDesencriptados);
+  trabajadoresActivos = JSON.parse(datosDesencriptados);
   
   document.getElementById('authContainer').style.display = 'none';
   document.getElementById('workersSection').style.display = 'block';
@@ -475,8 +476,8 @@ function calcularVencimiento(){
   res.textContent = currentLang === 'es' ? 'Por favor selecciona una fecha válida.' : 'Please select a valid date.';
   return;
  }
- const fecha = new Date(val);
- fecha.setFullYear(fecha.getFullYear() + 1);
+ const [anio, mes, dia] = val.split('-').map(Number);
+ const fecha = new Date(anio + 1, mes - 1, dia);
  const options = { year: 'numeric', month: 'long', day: 'numeric' };
  const fechaStr = fecha.toLocaleDateString(currentLang === 'es' ? 'es-ES' : 'en-US', options);
  res.innerHTML = currentLang === 'es' ? 
@@ -491,17 +492,18 @@ function toggleFaq(el){
  span.textContent = item.classList.contains('active') ? '-' : '+';
 }
 
-function toggleTheme(){
- const body = document.body;
- const btn = document.querySelector('.theme-btn');
- if(body.getAttribute('data-theme') === 'light'){
-  body.setAttribute('data-theme', 'dark');
-  btn.textContent = '☀️';
- } else {
-  body.setAttribute('data-theme', 'light');
-  btn.textContent = '🌙';
- }
+function aplicarTema(t){
+ document.body.setAttribute('data-theme', t);
+ document.querySelector('.theme-btn').textContent = t === 'dark' ? '☀️' : '🌙';
 }
+
+function toggleTheme(){
+ const t = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+ aplicarTema(t);
+ try { localStorage.setItem('ateseg_tema', t); } catch(e){}
+}
+
+try { if (localStorage.getItem('ateseg_tema') === 'dark') aplicarTema('dark'); } catch(e){}
 
 function toggleLang(){
  currentLang = currentLang === 'es' ? 'en' : 'es';
@@ -516,10 +518,13 @@ function toggleLang(){
 
 function acceptCookies(){
  document.getElementById('cookie-banner').style.display = 'none';
+ try { localStorage.setItem('ateseg_cookies', '1'); } catch(e){}
 }
 
+try { if (localStorage.getItem('ateseg_cookies') === '1') document.getElementById('cookie-banner').style.display = 'none'; } catch(e){}
+
 function escaparHTML(str) {
- return str.replace(/[&<>'"]/g, 
+ return String(str ?? '').replace(/[&<>'"]/g, 
   tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
  );
 }
@@ -556,11 +561,11 @@ function renderWorkers(a){
   grid.className = 'lvl-grid';
 
   agrupados[nivel].forEach(w => {
-   const rc = w.recargaAhora && w.whatsapp ? `<a class="rc" href="https://wa.me/${w.whatsapp}?text=Hola%20${escaparHTML(w.nombre)},%20deseo%20solicitar%20recarga" target="_blank" rel="noopener">Solicitar recarga ahora</a>` : '';
+   const rc = w.recargaAhora && w.whatsapp ? `<a class="rc" href="https://wa.me/${escaparHTML(w.whatsapp)}?text=${encodeURIComponent('Hola ' + w.nombre + ', deseo solicitar recarga')}" target="_blank" rel="noopener">Solicitar recarga ahora</a>` : '';
    
    const d = document.createElement('div');
    d.className = 'wk';
-   d.innerHTML = `<div><div class="wh"><img src="${escaparHTML(w.foto)}" alt="${escaparHTML(w.nombre)}" onerror="this.src='logo-ateseg.jpg'"><div><h3>${escaparHTML(w.nombre)}</h3><p class="role">${escaparHTML(w.cargo)}</p></div></div>
+   d.innerHTML = `<div><div class="wh"><img src="${escaparHTML(w.foto)}" alt="${escaparHTML(w.nombre)}" onerror="this.onerror=null;this.src='logo-ateseg.jpg'"><div><h3>${escaparHTML(w.nombre)}</h3><p class="role">${escaparHTML(w.cargo)}</p></div></div>
    <p><strong>Edad:</strong> ${escaparHTML(String(w.edad))}</p>
    <span class="bd ${w.activo?'ok':'no'}">${w.activo?'Activo y vigente':'Inactivo'}</span><br>
    <span class="bd ar">Área: ${escaparHTML(w.area)}</span>
@@ -575,12 +580,16 @@ function renderWorkers(a){
 }
 
 document.getElementById('searchInput')?.addEventListener('input', e => {
- const q = escaparHTML(e.target.value.toLowerCase());
- renderWorkers(trabajadoresActivos.filter(w => 
-  w.nombre.toLowerCase().includes(q) || 
-  w.cargo.toLowerCase().includes(q) || 
-  w.area.toLowerCase().includes(q)
+ const q = e.target.value.trim().toLowerCase();
+ renderWorkers(trabajadoresActivos.filter(w =>
+  String(w.nombre || '').toLowerCase().includes(q) ||
+  String(w.cargo || '').toLowerCase().includes(q) ||
+  String(w.area || '').toLowerCase().includes(q)
  ));
+});
+
+document.getElementById('passwordInput')?.addEventListener('keydown', e => {
+ if (e.key === 'Enter') verificarClave();
 });
 </script>
 </body>
