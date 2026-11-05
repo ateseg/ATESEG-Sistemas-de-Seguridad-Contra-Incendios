@@ -137,10 +137,10 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:7
 (function(){
 'use strict';
 
-const WHATSAPP = '593988257080';
+const WHATSAPP = '593980677550';
 const KEY_CARRITO = 'ateseg_cotizacion';
 const KEY_TEMA = 'ateseg_tema';
-// Orden y título de cada sección. Una categoría que no esté aquí también se muestra, al final.
+//Orden y título de cada sección. Una categoría que no esté aquí también se muestra, al final.
 const SECCIONES = {
   'VENTAS': '🛒 VENTAS',
   'EXTINTORES': '🧯 EXTINTORES',
@@ -157,7 +157,7 @@ const SECCIONES = {
 };
 const $ = id => document.getElementById(id);
 
-/* ---------- utilidades ---------- */
+
 function esc(v){
   return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
@@ -174,7 +174,7 @@ function guardarCarrito(){
   try { localStorage.setItem(KEY_CARRITO, JSON.stringify(carrito)); } catch(e){}
 }
 
-/* ---------- datos ---------- */
+
 const catalogo = (typeof productos !== 'undefined' && Array.isArray(productos))
   ? productos.filter(p => p && p.codigo && p.nombre)
              .map(p => Object.assign({}, p, { categoria: String(p.categoria || 'OTROS').trim().toUpperCase() }))
@@ -192,7 +192,7 @@ let carrito = leerCarrito()
 const mismo = (i, cod, opc) => i.codigo === cod && (i.opcion || '') === (opc || '');
 const titulo = i => porCodigo.get(i.codigo).nombre + (i.opcion ? ' – ' + i.opcion : '');
 
-/* ---------- tema ---------- */
+
 function aplicarTema(t){
   document.body.setAttribute('data-theme', t);
   $('themeBtn').textContent = t === 'dark' ? '☀️' : '🌙';
@@ -203,7 +203,7 @@ function cambiarTema(){
   try { localStorage.setItem(KEY_TEMA, t); } catch(e){}
 }
 
-/* ---------- catálogo ---------- */
+
 function llenarCategorias(){
   const sel = $('catSelect');
   const cats = [];
@@ -293,7 +293,6 @@ function renderProductos(){
   $('resultCount').textContent = lista.length + (lista.length === 1 ? ' producto' : ' productos');
 }
 
-/* ---------- carrito ---------- */
 function totalUnidades(){ return carrito.reduce((s, i) => s + i.cantidad, 0); }
 
 function actualizarCarritoUI(){
@@ -370,7 +369,7 @@ function cerrarCarrito(){
   if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus();
 }
 
-/* ---------- envío por WhatsApp ---------- */
+
 function enviarCotizacion(){
   const err = $('formError');
   err.textContent = '';
@@ -402,8 +401,6 @@ function enviarCotizacion(){
   const url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lineas.join('\n'));
   window.open(url, '_blank', 'noopener');
 }
-
-/* ---------- eventos ---------- */
 function iniciar(){
   let tema = 'light';
   try { tema = localStorage.getItem(KEY_TEMA) === 'dark' ? 'dark' : 'light'; } catch(e){}
