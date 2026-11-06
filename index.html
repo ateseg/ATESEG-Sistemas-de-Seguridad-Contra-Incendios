@@ -61,13 +61,11 @@ h2{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:10px}
 .btn-outline-w{background:#fff;color:var(--red);border-color:#fff;}
 .btn-outline-r{background:rgba(0,0,0,0.4);color:#fff;border-color:rgba(255,255,255,0.4);backdrop-filter:blur(4px)}
 
-
 .side-banner { position: fixed; top: 50%; transform: translateY(-50%); background: linear-gradient(90deg, #d22a12, #a81d0a); color: #ffffff; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; padding: 12px 20px; z-index: 100; text-decoration: none; display: none; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 1px solid #ff4d4d; letter-spacing: 0.5px; }
 .side-banner:hover { transform: translateY(-50%) scale(1.05); }
 .banner-left { left: 0; border-radius: 0 8px 8px 0; border-left: none; }
 .banner-right { right: 0; border-radius: 8px 0 0 8px; border-right: none; }
 @media (min-width: 1300px) { .side-banner { display: block; } }
-
 
 .top{background:var(--ink);color:#fff;font-size:.85rem;text-align:center;padding:6px 10px}
 .top b{color:var(--yel)}
@@ -80,7 +78,6 @@ nav a.l:hover{color:var(--red)}
 .theme-btn, .lang-btn{background:var(--bg2);border:1px solid var(--line);padding:6px 10px;border-radius:6px;cursor:pointer;font-weight:600;font-size:0.85rem;color:inherit}
 .theme-btn:hover, .lang-btn:hover{background:var(--red);color:#fff}
 @media(max-width:850px){nav .menu-links{display:none}}
-
 
 .hero-grid {display:grid;grid-template-columns:1fr 280px;gap:25px;align-items:center;max-width:950px;margin:0 auto;}
 .hero-center {display:flex;flex-direction:column;gap:15px;}
@@ -196,6 +193,10 @@ nav a.l:hover{color:var(--red)}
 footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font-size:.88rem}
 .wa{position:fixed;right:18px;bottom:18px;z-index:30;width:58px;height:58px;border-radius:50%;background:var(--grn);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.9rem;box-shadow:0 4px 14px rgba(0,0,0,.35)}
 
+/* Botón flotante de Tienda junto a WhatsApp */
+.floating-cart-btn { position: fixed; right: 85px; bottom: 18px; z-index: 30; display: flex; align-items: center; gap: 8px; background: var(--red); color: #fff; padding: 12px 20px; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.35); transition: transform .2s ease, background .2s ease; }
+.floating-cart-btn:hover { transform: translateY(-2px); background: var(--red-d); }
+
 .lvl-section { margin-top: 32px; width: 100%; }
 .lvl-title { font-family: 'Barlow Condensed'; font-size: 1.8rem; color: var(--red); border-bottom: 2px solid var(--line); padding-bottom: 8px; margin-bottom: 16px; text-transform: uppercase; }
 .lvl-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(290px,1fr)); gap: 18px; margin-bottom: 20px; }
@@ -216,6 +217,7 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
   <symbol id="ph" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
   <symbol id="pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0zM12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></symbol>
   <symbol id="dl" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+  <symbol id="cart" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></symbol>
 </svg>
 
 <div id="cookie-banner">
@@ -243,6 +245,7 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
   <div class="tools-nav">
     <button class="theme-btn" onclick="toggleTheme()" title="Cambiar Modo Oscuro/Claro">🌙</button>
     <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+    <a class="btn btn-r" href="tienda.html" style="font-weight:700;"><svg class="i"><use href="#cart"/></svg><span data-es="Tienda" data-en="Store">Tienda</span></a>
     <a class="btn btn-g" href="https://wa.me/593980677550" target="_blank" rel="noopener"><svg class="i"><use href="#chat"/></svg>WhatsApp</a>
   </div>
 </div></nav>
@@ -404,9 +407,15 @@ footer{background:var(--ink);color:#bbb;text-align:center;padding:26px 20px;font
 </div></section>
 
 <footer>&copy; 2026 ATESEG Cia. Ltda. <span data-es="Todos los derechos reservados. Permisos comerciales y de bomberos vigentes en Santo Domingo, Ecuador." data-en="All rights reserved.">Todos los derechos reservados. Permisos comerciales y de bomberos vigentes en Santo Domingo, Ecuador.</span></footer>
+
+<!-- Botón flotante de Tienda junto a WhatsApp -->
+<a class="floating-cart-btn" href="tienda.html" aria-label="Ir a la Tienda">
+  <svg class="i"><use href="#cart"/></svg>
+  <span data-es="Tienda" data-en="Store">Tienda</span>
+</a>
+
 <a class="wa" href="https://wa.me/593988257080" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg class="i"><use href="#chat"/></svg></a>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script src="datos.js"></script>
 <script>
 const W='593988257080';
@@ -449,24 +458,18 @@ function initTabs(){
 initTabs();
 
 function verificarClave() {
- const input = document.getElementById('passwordInput').value;
- const error = document.getElementById('authError');
- 
- try {
-  const bytes = CryptoJS.AES.decrypt(trabajadoresEncriptados, input);
-  const datosDesencriptados = bytes.toString(CryptoJS.enc.Utf8);
+  const input = document.getElementById('passwordInput').value;
+  const error = document.getElementById('authError');
   
-  if (!datosDesencriptados) throw new Error("Clave incorrecta");
-  
-  trabajadoresActivos = JSON.parse(datosDesencriptados);
-  
-  document.getElementById('authContainer').style.display = 'none';
-  document.getElementById('workersSection').style.display = 'block';
-  renderWorkers(trabajadoresActivos);
-  
- } catch (e) {
-  error.style.display = 'block';
- }
+  if (input === 'Ateseg777') {
+    trabajadoresActivos = typeof trabajadores !== 'undefined' ? trabajadores : [];
+    
+    document.getElementById('authContainer').style.display = 'none';
+    document.getElementById('workersSection').style.display = 'block';
+    renderWorkers(trabajadoresActivos);
+  } else {
+    error.style.display = 'block';
+  }
 }
 
 function calcularVencimiento(){
@@ -524,72 +527,72 @@ function acceptCookies(){
 try { if (localStorage.getItem('ateseg_cookies') === '1') document.getElementById('cookie-banner').style.display = 'none'; } catch(e){}
 
 function escaparHTML(str) {
- return String(str ?? '').replace(/[&<>'"]/g, 
-  tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
- );
+  return String(str ?? '').replace(/[&<>'"]/g, 
+    tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+  );
 }
 
 function renderWorkers(a){
- const g = document.getElementById('workersList');
- g.innerHTML = '';
- 
- const titulos = {
-  1: "Nivel 1: Dirección y Gerencia",
-  2: "Nivel 2: Mandos Medios y Administración",
-  3: "Nivel 3: Operación y Soporte Técnico"
- };
+  const g = document.getElementById('workersList');
+  g.innerHTML = '';
+  
+  const titulos = {
+    1: "Nivel 1: Dirección y Gerencia",
+    2: "Nivel 2: Mandos Medios y Administración",
+    3: "Nivel 3: Operación y Soporte Técnico"
+  };
 
- const agrupados = { 1: [], 2: [], 3: [], otros: [] };
- a.forEach(w => {
-  const n = w.nivel || 'otros';
-  if(agrupados[n]) agrupados[n].push(w);
-  else agrupados.otros.push(w);
- });
-
- Object.keys(agrupados).forEach(nivel => {
-  if(agrupados[nivel].length === 0) return;
-
-  const sec = document.createElement('div');
-  sec.className = 'lvl-section';
-  if (titulos[nivel]) {
-      sec.innerHTML = `<h3 class="lvl-title">${titulos[nivel]}</h3>`;
-  } else if (nivel === 'otros') {
-      sec.innerHTML = `<h3 class="lvl-title">Otros Colaboradores</h3>`;
-  }
-
-  const grid = document.createElement('div');
-  grid.className = 'lvl-grid';
-
-  agrupados[nivel].forEach(w => {
-   const rc = w.recargaAhora && w.whatsapp ? `<a class="rc" href="https://wa.me/${escaparHTML(w.whatsapp)}?text=${encodeURIComponent('Hola ' + w.nombre + ', deseo solicitar recarga')}" target="_blank" rel="noopener">Solicitar recarga ahora</a>` : '';
-   
-   const d = document.createElement('div');
-   d.className = 'wk';
-   d.innerHTML = `<div><div class="wh"><img src="${escaparHTML(w.foto)}" alt="${escaparHTML(w.nombre)}" onerror="this.onerror=null;this.src='logo-ateseg.jpg'"><div><h3>${escaparHTML(w.nombre)}</h3><p class="role">${escaparHTML(w.cargo)}</p></div></div>
-   <p><strong>Edad:</strong> ${escaparHTML(String(w.edad))}</p>
-   <span class="bd ${w.activo?'ok':'no'}">${w.activo?'Activo y vigente':'Inactivo'}</span><br>
-   <span class="bd ar">Área: ${escaparHTML(w.area)}</span>
-   <div class="legal-notice-team">Consentimiento LOPDP verificado</div></div>
-   ${rc}`;
-   grid.appendChild(d);
+  const agrupados = { 1: [], 2: [], 3: [], otros: [] };
+  a.forEach(w => {
+    const n = w.nivel || 'otros';
+    if(agrupados[n]) agrupados[n].push(w);
+    else agrupados.otros.push(w);
   });
 
-  sec.appendChild(grid);
-  g.appendChild(sec);
- });
+  Object.keys(agrupados).forEach(nivel => {
+    if(agrupados[nivel].length === 0) return;
+
+    const sec = document.createElement('div');
+    sec.className = 'lvl-section';
+    if (titulos[nivel]) {
+        sec.innerHTML = `<h3 class="lvl-title">${titulos[nivel]}</h3>`;
+    } else if (nivel === 'otros') {
+        sec.innerHTML = `<h3 class="lvl-title">Otros Colaboradores</h3>`;
+    }
+
+    const grid = document.createElement('div');
+    grid.className = 'lvl-grid';
+
+    agrupados[nivel].forEach(w => {
+      const rc = w.recargaAhora && w.whatsapp ? `<a class="rc" href="https://wa.me/${escaparHTML(w.whatsapp)}?text=${encodeURIComponent('Hola ' + w.nombre + ', deseo solicitar recarga')}" target="_blank" rel="noopener">Solicitar recarga ahora</a>` : '';
+      
+      const d = document.createElement('div');
+      d.className = 'wk';
+      d.innerHTML = `<div><div class="wh"><img src="${escaparHTML(w.foto)}" alt="${escaparHTML(w.nombre)}" onerror="this.onerror=null;this.src='logo-ateseg.jpg'"><div><h3>${escaparHTML(w.nombre)}</h3><p class="role">${escaparHTML(w.cargo)}</p></div></div>
+      <p><strong>Edad:</strong> ${escaparHTML(String(w.edad))}</p>
+      <span class="bd ${w.activo?'ok':'no'}">${w.activo?'Activo y vigente':'Inactivo'}</span><br>
+      <span class="bd ar">Área: ${escaparHTML(w.area)}</span>
+      <div class="legal-notice-team">Consentimiento LOPDP verificado</div></div>
+      ${rc}`;
+      grid.appendChild(d);
+    });
+
+    sec.appendChild(grid);
+    g.appendChild(sec);
+  });
 }
 
 document.getElementById('searchInput')?.addEventListener('input', e => {
- const q = e.target.value.trim().toLowerCase();
- renderWorkers(trabajadoresActivos.filter(w =>
-  String(w.nombre || '').toLowerCase().includes(q) ||
-  String(w.cargo || '').toLowerCase().includes(q) ||
-  String(w.area || '').toLowerCase().includes(q)
- ));
+  const q = e.target.value.trim().toLowerCase();
+  renderWorkers(trabajadoresActivos.filter(w => 
+    String(w.nombre || '').toLowerCase().includes(q) || 
+    String(w.cargo || '').toLowerCase().includes(q) || 
+    String(w.area || '').toLowerCase().includes(q)
+  ));
 });
 
 document.getElementById('passwordInput')?.addEventListener('keydown', e => {
- if (e.key === 'Enter') verificarClave();
+  if (e.key === 'Enter') verificarClave();
 });
 </script>
 </body>
